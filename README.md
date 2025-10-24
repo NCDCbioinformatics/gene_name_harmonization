@@ -1,13 +1,13 @@
 # gene-name-harmonization
 
-#패키지 다운로드
+#package download
 
-#설치
-unzip gene-normalizer-human_0.2.0.zip
-cd gene_normalizer_human
+#install
+unzip gene-normalizer-human_0.2.0.zip \
+cd gene_normalizer_human \
 pip install -e .
 
-#실행
+#run package
 gene-normalizer-human "/path/gene_normalizer_human_0.2.1/gene_name_test.xlsx" \
   --col original_gene_name \
   --gtf "/path/gene_normalizer_human_0.2.1/Homo_sapiens.GRCh38.110.gtf.gz" \
