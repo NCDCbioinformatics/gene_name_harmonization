@@ -1,7 +1,5 @@
 # gene-name-harmonization
 
-#package download
-
 #install
 unzip gene-normalizer-human_0.2.0.zip \
 cd gene_normalizer_human \
