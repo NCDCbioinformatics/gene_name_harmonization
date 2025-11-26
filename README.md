@@ -16,7 +16,7 @@ Read the `original_gene_name` column from Excel/CSV/TSV \
 Separation and normalization using delimiters (`/, ; |`) etc. \
 Mapping Ensembl gene_name / gene_id to Ensembl GTF + HGNC synonyms
 
-# 주요 옵션
+# main options
 - `--col` : Input gene column name (default: auto-detect)
 - `--gtf` : Ensembl GTF (gz/plain)
 - `--hgnc`: HGNC TSV (symbol, alias_symbol, prev_symbol)
