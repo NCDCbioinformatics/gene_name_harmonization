@@ -1,6 +1,6 @@
 # gene-name-harmonization
 #install \
-unzip gene-normalizer-human_0.2.0.zip \
+unzip gene-normalizer-human_0.2.1.zip \
 cd gene_normalizer_human \
 pip install -e .
 
