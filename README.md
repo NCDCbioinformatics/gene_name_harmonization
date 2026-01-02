@@ -1,4 +1,6 @@
 # gene-name-harmonization
+<img width="2554" height="915" alt="image" src="https://github.com/user-attachments/assets/e42141a3-d222-48f8-84a0-71f3d6ef6b02" />
+
 #install \
 unzip gene-normalizer-human_0.2.1.zip \
 cd gene_normalizer_human \
