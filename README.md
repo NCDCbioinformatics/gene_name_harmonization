@@ -27,7 +27,7 @@ Mapping Ensembl gene_name / gene_id to Ensembl GTF + HGNC synonyms
 - `--keep-empty`
 ## Publication context
 
-This repository is a component of the CURE-NGS panel harmonization framework described in the manuscript \"Multi-Institutional Harmonization Framework for Heterogeneous Panel-Based NGS in Precision Oncology.\"
+This repository is a component of the CURE-NGS panel harmonization framework described in the manuscript "Multi-Institutional Harmonization Framework for Heterogeneous Panel-Based NGS in Precision Oncology."
 
 Umbrella repository: https://github.com/NCDCbioinformatics/cure-ngs-panel-harmonization-framework
 
