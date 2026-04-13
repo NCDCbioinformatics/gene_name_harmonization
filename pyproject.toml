@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "gene-normalizer-human"
+version = "0.2.1"
+description = "Human-only gene normalizer: map messy names in Excel/CSV/TSV to Ensembl gene_name & Ensembl gene_id using GTF + HGNC synonyms. Handles multi-name cells."
+authors = [{name="NCDC Bioinformatics"}]
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.9"
+dependencies = [
+    "pandas>=2.0",
+    "openpyxl>=3.1"
+]
+
+[project.scripts]
+gene-normalizer-human = "gene_normalizer_human.cli:app"
