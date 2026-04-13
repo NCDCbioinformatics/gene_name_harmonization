@@ -25,3 +25,14 @@ Mapping Ensembl gene_name / gene_id to Ensembl GTF + HGNC synonyms
 - `--split-delims` : Name separator (default: `/,;|`)
 - `--no-fuzzy`
 - `--keep-empty`
+## Publication context
+
+This repository is a component of the CURE-NGS panel harmonization framework described in the manuscript \"Multi-Institutional Harmonization Framework for Heterogeneous Panel-Based NGS in Precision Oncology.\"
+
+Umbrella repository: https://github.com/NCDCbioinformatics/cure-ngs-panel-harmonization-framework
+
+## Software metadata
+
+- Operating system(s): Linux or macOS; Windows users can run the package in a compatible Python environment
+- Programming language(s): Python
+- License: MIT License
