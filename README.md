@@ -1,4 +1,22 @@
 # gene-name-harmonization
+
+> **Reviewer and new-user deployment:** use the supported, version-pinned
+> [CURE-NGS Docker/OCI distribution](https://github.com/NCDCbioinformatics/cure-ngs-panel-harmonization-framework#reviewer-quick-start).
+> The unified CLI accepts GTF and HGNC files as mounted resources and includes
+> deterministic alias-normalization tests.
+
+## Reproducible installation and test data
+
+- [Clean-machine installation](https://github.com/NCDCbioinformatics/cure-ngs-panel-harmonization-framework/blob/main/docs/INSTALLATION.md)
+- [GENCODE GTF and HGNC resource setup](https://github.com/NCDCbioinformatics/cure-ngs-panel-harmonization-framework/blob/main/docs/REFERENCE_DATA.md#4-install-gtf-and-hgnc-resources)
+- [Gene-normalization commands](https://github.com/NCDCbioinformatics/cure-ngs-panel-harmonization-framework/blob/main/docs/COMMAND_REFERENCE.md#gene-and-fusion-normalization)
+- [Network-free reviewer walkthrough](https://github.com/NCDCbioinformatics/cure-ngs-panel-harmonization-framework/blob/main/docs/REVIEWER_REPRODUCTION.md)
+- [Synthetic GTF and HGNC fixtures](https://github.com/NCDCbioinformatics/cure-ngs-panel-harmonization-framework/tree/main/examples/synthetic)
+
+The latest audited GitHub release is `gene_normalizer_human` (release name
+`gene_normalizer_human_0.2.1`). Its immutable identity and asset SHA-256 are
+recorded in the umbrella repository.
+
 <img width="2554" height="915" alt="image" src="https://github.com/user-attachments/assets/e42141a3-d222-48f8-84a0-71f3d6ef6b02" />
 
 #install \
