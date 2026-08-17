@@ -1,56 +1,76 @@
-# gene-name-harmonization
+# gene_name_harmonization
 
-> **Reviewer and new-user deployment:** use the supported, version-pinned
-> [CURE-NGS Docker/OCI distribution](https://github.com/NCDCbioinformatics/cure-ngs-panel-harmonization-framework#reviewer-quick-start).
-> The unified CLI accepts GTF and HGNC files as mounted resources and includes
-> deterministic alias-normalization tests.
+GTF/HGNC-backed gene-symbol normalization component of the CURE-NGS panel
+harmonization framework.
 
-## Reproducible installation and test data
+> **Supported deployment:** use the unified
+> [CURE-NGS Docker/OCI distribution](https://github.com/NCDCbioinformatics/cure-ngs-panel-harmonization-framework).
+> This repository preserves component provenance. The one supported container
+> is published from the umbrella repository, not this component repository;
+> **No packages published** here is therefore expected.
 
-- [Clean-machine installation](https://github.com/NCDCbioinformatics/cure-ngs-panel-harmonization-framework/blob/main/docs/INSTALLATION.md)
-- [GENCODE GTF and HGNC resource setup](https://github.com/NCDCbioinformatics/cure-ngs-panel-harmonization-framework/blob/main/docs/REFERENCE_DATA.md#4-install-gtf-and-hgnc-resources)
-- [Gene-normalization commands](https://github.com/NCDCbioinformatics/cure-ngs-panel-harmonization-framework/blob/main/docs/COMMAND_REFERENCE.md#gene-and-fusion-normalization)
-- [Network-free reviewer walkthrough](https://github.com/NCDCbioinformatics/cure-ngs-panel-harmonization-framework/blob/main/docs/REVIEWER_REPRODUCTION.md)
-- [Synthetic GTF and HGNC fixtures](https://github.com/NCDCbioinformatics/cure-ngs-panel-harmonization-framework/tree/main/examples/synthetic)
+## Role in the unified project
 
-The latest audited GitHub release is `gene_normalizer_human` (release name
-`gene_normalizer_human_0.2.1`). Its immutable identity and asset SHA-256 are
-recorded in the umbrella repository.
+| Item | Value |
+| --- | --- |
+| Historical responsibility | Map current, alias, previous, and Ensembl gene identifiers to canonical symbols |
+| Supported command | `cure-ngs normalize-gene` |
+| Latest audited release | `gene_normalizer_human` / release name `gene_normalizer_human_0.2.1` |
+| Required data | GTF containing `gene_id`/`gene_name` and HGNC complete-set TSV |
 
-<img width="2554" height="915" alt="image" src="https://github.com/user-attachments/assets/e42141a3-d222-48f8-84a0-71f3d6ef6b02" />
+## Install the supported Docker distribution
 
-#install \
-unzip gene-normalizer-human_0.2.1.zip \
-cd gene_normalizer_human \
-pip install -e .
+Install [Docker Desktop](https://docs.docker.com/desktop/) or
+[Docker Engine](https://docs.docker.com/engine/install/), then build:
 
-#run package \
-gene-normalizer-human "/path/gene_normalizer_human_0.2.1/gene_name_test.xlsx" \
-  --col original_gene_name \
-  --gtf "/path/gene_normalizer_human_0.2.1/Homo_sapiens.GRCh38.110.gtf.gz" \
-  --hgnc "/path/gene_normalizer_human_0.2.1/hgnc_complete_set.txt" \
-  -o "/out_path/mapped.xlsx"
+```bash
+git clone https://github.com/NCDCbioinformatics/cure-ngs-panel-harmonization-framework.git
+cd cure-ngs-panel-harmonization-framework
+docker build --file docker/Dockerfile.core --tag cure-ngs-harmonizer:0.1.0-core .
+```
 
-# Summary features
-Read the `original_gene_name` column from Excel/CSV/TSV \
-Separation and normalization using delimiters (`/, ; |`) etc. \
-Mapping Ensembl gene_name / gene_id to Ensembl GTF + HGNC synonyms
+After release `0.1.0` is visible in the umbrella **Packages** panel:
 
-# main options
-- `--col` : Input gene column name (default: auto-detect)
-- `--gtf` : Ensembl GTF (gz/plain)
-- `--hgnc`: HGNC TSV (symbol, alias_symbol, prev_symbol)
-- `--split-delims` : Name separator (default: `/,;|`)
-- `--no-fuzzy`
-- `--keep-empty`
-## Publication context
+```bash
+docker pull ghcr.io/ncdcbioinformatics/cure-ngs-harmonizer:0.1.0-core
+```
 
-This repository is a component of the CURE-NGS panel harmonization framework described in the manuscript "Multi-Institutional Harmonization Framework for Heterogeneous Panel-Based NGS in Precision Oncology."
+If no package is listed yet, use the source build above.
 
-Umbrella repository: https://github.com/NCDCbioinformatics/cure-ngs-panel-harmonization-framework
+## Verify and run this capability
 
-## Software metadata
+The reviewer walkthrough checks that the alias `P53` resolves to `TP53`:
 
-- Operating system(s): Linux or macOS; Windows users can run the package in a compatible Python environment
-- Programming language(s): Python
-- License: MIT License
+```bash
+bash scripts/run_reviewer_demo.sh
+```
+
+Direct component command with the bundled non-biological fixtures:
+
+```bash
+docker run --rm \
+  --volume "$PWD/examples:/examples:ro" \
+  cure-ngs-harmonizer:0.1.0-core normalize-gene P53 \
+  --gtf /examples/synthetic/genes.gtf \
+  --hgnc /examples/synthetic/hgnc.tsv
+```
+
+Institutional runs should mount a recorded GENCODE/Ensembl GTF and HGNC
+complete-set snapshot. Fuzzy matching is disabled by default.
+
+## Historical standalone package
+
+The `gene_normalizer_human_0.2.1` release asset remains available for
+provenance. It accepts Excel/CSV/TSV input and `--gtf`, `--hgnc`, `--col`,
+`--split-delims`, `--no-fuzzy`, and `--keep-empty` options. The asset filename
+is labelled 0.2.1 while its archived internal package metadata reports 0.2.0;
+the umbrella lock records that discrepancy explicitly.
+
+## Documentation and test data
+
+- [Project structure](https://github.com/NCDCbioinformatics/cure-ngs-panel-harmonization-framework/blob/main/docs/PROJECT_STRUCTURE.md)
+- [Gene/fusion commands](https://github.com/NCDCbioinformatics/cure-ngs-panel-harmonization-framework/blob/main/docs/COMMAND_REFERENCE.md#gene-and-fusion-normalization)
+- [GTF and HGNC setup](https://github.com/NCDCbioinformatics/cure-ngs-panel-harmonization-framework/blob/main/docs/REFERENCE_DATA.md#4-install-gtf-and-hgnc-resources)
+- [Synthetic GTF/HGNC fixtures](https://github.com/NCDCbioinformatics/cure-ngs-panel-harmonization-framework/tree/main/examples/synthetic)
+
+License: MIT. No CURE-NGS patient-level data are distributed here.
